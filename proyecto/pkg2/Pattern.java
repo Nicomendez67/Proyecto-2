@@ -22,18 +22,35 @@ public class Pattern {
     private List<Integer> positions;
 
     public Pattern(String triplet) {
+
+    /**
+     * Registra una nueva aparición del patron en la posición dada.
+     * @param position índice de aparicion en la cadena principal
+     */
         this.triplet = triplet;
         this.frequency = 0;
         this.positions = new ArrayList<>();
     }
 
     public void addOccurrence(int position) {
+    /**
+     * Devuelve la tripleta de ADN.
+     * @return cadena de tres caracteres que representa la tripleta
+     */
         frequency++;
         positions.add(position);
     }
 
     public String getTriplet() { return triplet; }
+    /**
+     * Devuelve la cantidad de veces que aparecio el patron.
+     * @return frecuencia de ocurrencias
+     */
     public int getFrequency() { return frequency; }
+    /**
+     * Devuelve la lista de posiciones donde se encontro la tripleta.
+     * @return lista de índices
+     */
     public List<Integer> getPositions() { return positions; }
 }
 
