@@ -15,12 +15,7 @@ import javax.swing.*;
  * Carga archivos de ADN y extrae tripletas para almacenarlas en estructuras.
  */
 public class DNAProcessor {
-    /**
-     * Permite al usuario seleccionar un archivo y procesa su contenido.
-     * @param frame ventana de contexto para el JFileChooser
-     * @return nombre del archivo cargado
-     */
-
+    
     private HashTable hashTable;
     private BinarySearchTree bst;
 
@@ -28,12 +23,13 @@ public class DNAProcessor {
         this.hashTable = new HashTable(199);
         this.bst = new BinarySearchTree();
     }
-
-    public String loadDNAFromFile(JFrame frame) {
     /**
-     * Devuelve la tabla hash con los patrones encontrados.
-     * @return tabla de dispersion
+     * Permite al usuario seleccionar un archivo y procesa su contenido.
+     * @param frame ventana de contexto para el JFileChooser
+     * @return nombre del archivo cargado
      */
+    public String loadDNAFromFile(JFrame frame) {
+    
         JFileChooser chooser = new JFileChooser();
         int result = chooser.showOpenDialog(frame);
         if (result == JFileChooser.APPROVE_OPTION) {
@@ -59,10 +55,13 @@ public class DNAProcessor {
         }
         return "Archivo no cargado";
     }
-
+    /**
+     * Devuelve la tabla hash con los patrones encontrados.
+     * @return tabla de dispersion
+     */
     public HashTable getHashTable() { return hashTable; }
     /**
-     * Devuelve el árbol binario con los patrones ordenados por frecuencia.
+     * Devuelve el arbol binario con los patrones ordenados por frecuencia.
      * @return arbol binario
      */
 
