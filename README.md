@@ -7,4 +7,4 @@ Aplicación Java con interfaz gráfica para analizar secuencias de ADN mediante 
 - Nicolas Mendez – 31985260
 - Antonio Yibirin - 32001374
 
-
+Enlace de Github: https://github.com/Nicomendez67/Proyecto-2.git
