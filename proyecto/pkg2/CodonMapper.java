@@ -10,8 +10,15 @@ package proyecto.pkg2;
  */
 
 import java.util.*;
-
+/**
+ * Mapea tripletas de ADN a aminoácidos según el código genético.
+ */
 public class CodonMapper {
+    /**
+     * Obtiene el nombre del aminoacido correspondiente a una tripleta.
+     * @param triplet tripleta de ADN
+     * @return nombre del aminoácido o "Tripleta no valida"
+     */
     private final Map<String, String> dnaToAminoAcid;
 
     public CodonMapper() {
@@ -32,10 +39,18 @@ public class CodonMapper {
     }
 
     public String getAminoAcid(String triplet) {
+    /**
+     * Devuelve todas las tripletas validas en el mapeo.
+     * @return conjunto de tripletas
+     */
         return dnaToAminoAcid.getOrDefault(triplet, "Tripleta no válida");
     }
 
     public Set<String> getAllValidTriplets() {
+    /**
+     * Agrupa las tripletas según el aminoacido que sintetizan.
+     * @return mapa de aminoacido a lista de tripletas
+     */
         return dnaToAminoAcid.keySet();
     }
 
