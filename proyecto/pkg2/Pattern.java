@@ -9,8 +9,14 @@ package proyecto.pkg2;
  * @author JAVIER MENDEZ
  */
 import java.util.*;
-
+/**
+ * Representa una tripleta de ADN con frecuencia de aparicion y posiciones en la secuencia.
+ */
 public class Pattern {
+    /**
+     * Constructor que inicializa una nueva tripleta con frecuencia 0.
+     * @param triplet tripleta de ADN
+     */
     private String triplet;
     private int frequency;
     private List<Integer> positions;
