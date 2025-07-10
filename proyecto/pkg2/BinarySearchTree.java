@@ -9,8 +9,14 @@ package proyecto.pkg2;
  * @author JAVIER MENDEZ
  */
 import java.util.*;
-
+/**
+ * Arbol binario de búsqueda para ordenar tripletas por frecuencia.
+ */
 public class BinarySearchTree {
+    /**
+     * Inserta un patrón en el arbol ordenado por frecuencia.
+     * @param pattern patron a insertar
+     */
     private class Node {
         Pattern pattern;
         Node left, right;
@@ -21,6 +27,11 @@ public class BinarySearchTree {
     private Node root;
 
     public void insert(Pattern pattern) {
+    /**
+     * Realiza recorrido in-order del arbol y devuelve los patrones ordenados.
+     * @return lista ordenada de patrones
+     */
+
         root = insertRec(root, pattern);
     }
 
@@ -34,6 +45,11 @@ public class BinarySearchTree {
     }
 
     public List<Pattern> inOrder() {
+    /**
+     * Obtiene el patron con mayor frecuencia.
+     * @return patron más frecuente
+     */
+
         List<Pattern> list = new ArrayList<>();
         inOrderRec(root, list);
         return list;
@@ -48,6 +64,10 @@ public class BinarySearchTree {
     }
 
     public Pattern getMostFrequent() {
+    /**
+     * Obtiene el patrón con menor frecuencia.
+     * @return patron menos frecuente
+     */
         Node current = root;
         while (current.right != null) current = current.right;
         return current.pattern;
