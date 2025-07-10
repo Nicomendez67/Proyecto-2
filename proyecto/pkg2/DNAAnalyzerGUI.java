@@ -13,46 +13,44 @@ package proyecto.pkg2;
 import javax.swing.*;
 import java.awt.*;
 /**
- * Interfaz gráfica principal del analizador de ADN.
+ * Interfaz grafica principal del analizador de ADN.
  */
 public class DNAAnalyzerGUI extends JFrame {
-    /**
-     * Constructor que inicializa todos los componentes de la GUI.
-     */
+    
     private DNAProcessor processor;
     private JLabel fileLabel;
     private JTextArea displayArea;
-
-    public DNAAnalyzerGUI() {
+    
     /**
-     * Muestra los patrones ordenados por frecuencia en el area de resultados.
+     * Constructor que inicializa todos los componentes de la GUI.
      */
+    public DNAAnalyzerGUI() {
         super("🧬 Analizador de ADN - Proyecto Bioinformática");
         this.processor = new DNAProcessor();
 
-        // 🧱 Configuración general
+        //  Configuracion general
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(700, 500);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // 📂 Panel superior con botón de carga y etiqueta de archivo
+        //  Panel superior con botón de carga y etiqueta de archivo
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JButton loadBtn = new JButton("📂 Cargar archivo");
+        JButton loadBtn = new JButton("Cargar archivo");
         fileLabel = new JLabel("Archivo no cargado");
         topPanel.add(loadBtn);
         topPanel.add(fileLabel);
         add(topPanel, BorderLayout.NORTH);
 
-        // 🧭 Panel central con pestañas de funcionalidad
+        //  Panel central con pestañas de funcionalidad
         JTabbedPane tabs = new JTabbedPane();
 
-        // 📋 Tab: listar patrones
+        //  Tab: listar patrones
         JButton listBtn = new JButton("Mostrar patrones por frecuencia");
         listBtn.addActionListener(e -> showPatterns());
-        tabs.addTab("📋 Lista", listBtn);
+        tabs.addTab(" Lista", listBtn);
 
-        // 🔍 Tab: búsqueda
+        //  Tab: busqueda
         JPanel searchPanel = new JPanel();
         searchPanel.add(new JLabel("Tripleta:"));
         JTextField searchField = new JTextField(6);
@@ -62,19 +60,19 @@ public class DNAAnalyzerGUI extends JFrame {
         searchBtn.addActionListener(e -> searchTriplet(searchField.getText()));
         tabs.addTab("🔎 Buscar", searchPanel);
 
-        // ⭐ Tab: más / menos frecuente
+        //  Tab: mas / menos frecuente
         JButton freqBtn = new JButton("Mostrar extremos de frecuencia");
         freqBtn.addActionListener(e -> showFrequencies());
-        tabs.addTab("⭐ Frecuencia", freqBtn);
+        tabs.addTab(" Frecuencia", freqBtn);
 
-        // 🧪 Tab: aminoácidos
+        //  Tab: aminoacidos
         JButton aminoBtn = new JButton("Mostrar mapa aminoácido");
         aminoBtn.addActionListener(e -> showAminoMap());
-        tabs.addTab("🧪 Aminoácidos", aminoBtn);
+        tabs.addTab(" Aminoácidos", aminoBtn);
 
         add(tabs, BorderLayout.CENTER);
 
-        // 📤 Área inferior para mostrar resultados
+        //  Area inferior para mostrar resultados
         displayArea = new JTextArea();
         displayArea.setEditable(false);
         displayArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
@@ -90,23 +88,22 @@ public class DNAAnalyzerGUI extends JFrame {
 
         setVisible(true);
     }
-
-    private void showPatterns() {
+    
     /**
-     * Busca y muestra informacion de una tripleta específica.
-     * @param triplet cadena de tres letras introducida por el usuario
+     * Muestra los patrones ordenados por frecuencia en el area de resultados.
      */
+    private void showPatterns() {
         StringBuilder sb = new StringBuilder();
         for (Pattern p : processor.getBST().inOrder()) {
             sb.append(String.format("%s (%d): %s%n", p.getTriplet(), p.getFrequency(), p.getPositions()));
         }
         displayArea.setText(sb.toString());
     }
-
-    private void searchTriplet(String triplet) {
     /**
-     * Muestra las tripletas mas y menos frecuentes.
+     * Busca y muestra informacion de una tripleta especifica.
+     * @param triplet cadena de tres letras introducida por el usuario
      */
+    private void searchTriplet(String triplet) {
         if (triplet == null || triplet.length() != 3) {
             displayArea.setText("🔺 Ingrese una tripleta de exactamente 3 letras.");
             return;
@@ -120,12 +117,10 @@ public class DNAAnalyzerGUI extends JFrame {
                     "\nPosiciones: " + p.getPositions());
         }
     }
-
-    private void showFrequencies() {
     /**
-     * Genera y muestra el informe de aminoacidos.
+     * Muestra las tripletas mas y menos frecuentes.
      */
-
+    private void showFrequencies() {
         Pattern max = processor.getBST().getMostFrequent();
         Pattern min = processor.getBST().getLeastFrequent();
         if (max != null && min != null) {
@@ -135,17 +130,18 @@ public class DNAAnalyzerGUI extends JFrame {
             displayArea.setText("⚠️ Aún no se ha cargado una secuencia válida.");
         }
     }
-
-    private void showAminoMap() {
-    /**
-     * Metodo principal que lanza la aplicacion.
-     * @param args argumentos de línea de comando (no utilizados)
+     /**
+     * Genera y muestra el informe de aminoacidos.
      */
+    private void showAminoMap() {
 
         AminoAcidReporter reporter = new AminoAcidReporter(processor.getHashTable());
         displayArea.setText(reporter.generateReport());
     }
-
+    /**
+     * Metodo principal que lanza la aplicacion.
+     * @param args argumentos de linea de comando (no utilizados)
+     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(DNAAnalyzerGUI::new);
     }
