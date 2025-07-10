@@ -12,13 +12,21 @@ package proyecto.pkg2;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * Interfaz gráfica principal del analizador de ADN.
+ */
 public class DNAAnalyzerGUI extends JFrame {
+    /**
+     * Constructor que inicializa todos los componentes de la GUI.
+     */
     private DNAProcessor processor;
     private JLabel fileLabel;
     private JTextArea displayArea;
 
     public DNAAnalyzerGUI() {
+    /**
+     * Muestra los patrones ordenados por frecuencia en el area de resultados.
+     */
         super("🧬 Analizador de ADN - Proyecto Bioinformática");
         this.processor = new DNAProcessor();
 
@@ -84,6 +92,10 @@ public class DNAAnalyzerGUI extends JFrame {
     }
 
     private void showPatterns() {
+    /**
+     * Busca y muestra informacion de una tripleta específica.
+     * @param triplet cadena de tres letras introducida por el usuario
+     */
         StringBuilder sb = new StringBuilder();
         for (Pattern p : processor.getBST().inOrder()) {
             sb.append(String.format("%s (%d): %s%n", p.getTriplet(), p.getFrequency(), p.getPositions()));
@@ -92,6 +104,9 @@ public class DNAAnalyzerGUI extends JFrame {
     }
 
     private void searchTriplet(String triplet) {
+    /**
+     * Muestra las tripletas mas y menos frecuentes.
+     */
         if (triplet == null || triplet.length() != 3) {
             displayArea.setText("🔺 Ingrese una tripleta de exactamente 3 letras.");
             return;
@@ -107,6 +122,10 @@ public class DNAAnalyzerGUI extends JFrame {
     }
 
     private void showFrequencies() {
+    /**
+     * Genera y muestra el informe de aminoacidos.
+     */
+
         Pattern max = processor.getBST().getMostFrequent();
         Pattern min = processor.getBST().getLeastFrequent();
         if (max != null && min != null) {
@@ -118,6 +137,11 @@ public class DNAAnalyzerGUI extends JFrame {
     }
 
     private void showAminoMap() {
+    /**
+     * Metodo principal que lanza la aplicacion.
+     * @param args argumentos de línea de comando (no utilizados)
+     */
+
         AminoAcidReporter reporter = new AminoAcidReporter(processor.getHashTable());
         displayArea.setText(reporter.generateReport());
     }
