@@ -10,8 +10,14 @@ package proyecto.pkg2;
  */
 
 import java.util.*;
-
+/**
+ * Genera reportes organizados por aminoacidos con frecuencias de aparicion.
+ */
 public class AminoAcidReporter {
+    /**
+     * Genera un reporte textual con tripletas agrupadas por aminoacido.
+     * @return cadena de texto con el informe
+     */
     private final CodonMapper mapper;
     private final HashTable hashTable;
 
