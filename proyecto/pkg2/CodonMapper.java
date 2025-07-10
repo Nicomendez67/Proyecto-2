@@ -11,16 +11,10 @@ package proyecto.pkg2;
 
 import java.util.*;
 /**
- * Mapea tripletas de ADN a aminoácidos según el código genético.
+ * Mapea tripletas de ADN a aminoacidos según el codigo genetico.
  */
 public class CodonMapper {
-    /**
-     * Obtiene el nombre del aminoacido correspondiente a una tripleta.
-     * @param triplet tripleta de ADN
-     * @return nombre del aminoácido o "Tripleta no valida"
-     */
     private final Map<String, String> dnaToAminoAcid;
-
     public CodonMapper() {
         dnaToAminoAcid = new HashMap<>();
         loadCodons();
@@ -35,25 +29,28 @@ public class CodonMapper {
         dnaToAminoAcid.put("TAA", "STOP");
         dnaToAminoAcid.put("TAG", "STOP");
         dnaToAminoAcid.put("TGA", "STOP");
-        // ⚠️ Agrega aquí todas las demás tripletas del enunciado si lo deseas
     }
-
+    /**
+     * Obtiene el nombre del aminoacido correspondiente a una tripleta.
+     * @param triplet tripleta de ADN
+     * @return nombre del aminoacido o "Tripleta no valida"
+     */
     public String getAminoAcid(String triplet) {
+        return dnaToAminoAcid.getOrDefault(triplet, "Tripleta no válida");
+    }
+    
     /**
      * Devuelve todas las tripletas validas en el mapeo.
      * @return conjunto de tripletas
      */
-        return dnaToAminoAcid.getOrDefault(triplet, "Tripleta no válida");
-    }
-
     public Set<String> getAllValidTriplets() {
-    /**
-     * Agrupa las tripletas según el aminoacido que sintetizan.
-     * @return mapa de aminoacido a lista de tripletas
-     */
         return dnaToAminoAcid.keySet();
     }
-
+    
+    /**
+     * Agrupa las tripletas segun el aminoacido que sintetizan.
+     * @return mapa de aminoacido a lista de tripletas
+     */
     public Map<String, List<String>> getGroupedTriplets() {
         Map<String, List<String>> grouped = new HashMap<>();
         for (Map.Entry<String, String> entry : dnaToAminoAcid.entrySet()) {
