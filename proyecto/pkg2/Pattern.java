@@ -13,34 +13,34 @@ import java.util.*;
  * Representa una tripleta de ADN con frecuencia de aparicion y posiciones en la secuencia.
  */
 public class Pattern {
+    
+    private String triplet;
+    private int frequency;
+    private List<Integer> positions;
+    
     /**
      * Constructor que inicializa una nueva tripleta con frecuencia 0.
      * @param triplet tripleta de ADN
      */
-    private String triplet;
-    private int frequency;
-    private List<Integer> positions;
-
     public Pattern(String triplet) {
 
-    /**
-     * Registra una nueva aparición del patron en la posicion dada.
-     * @param position indice de aparicion en la cadena principal
-     */
         this.triplet = triplet;
         this.frequency = 0;
         this.positions = new ArrayList<>();
     }
+     /**
+     * Registra una nueva aparición del patron en la posicion dada.
+     * @param position indice de aparicion en la cadena principal
+     */
 
     public void addOccurrence(int position) {
-    /**
-     * Devuelve la tripleta de ADN.
-     * @return cadena de tres caracteres que representa la tripleta
-     */
         frequency++;
         positions.add(position);
     }
-
+     /**
+     * Devuelve la tripleta de ADN.
+     * @return cadena de tres caracteres que representa la tripleta
+     */
     public String getTriplet() { return triplet; }
     /**
      * Devuelve la cantidad de veces que aparecio el patron.
