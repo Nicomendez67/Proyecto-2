@@ -24,8 +24,8 @@ public class Pattern {
     public Pattern(String triplet) {
 
     /**
-     * Registra una nueva aparición del patron en la posición dada.
-     * @param position índice de aparicion en la cadena principal
+     * Registra una nueva aparición del patron en la posicion dada.
+     * @param position indice de aparicion en la cadena principal
      */
         this.triplet = triplet;
         this.frequency = 0;
